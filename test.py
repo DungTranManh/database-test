@@ -2,7 +2,9 @@ import sqlite3
 import json
 import time
 from tracemalloc import start
+import psutil
 
+ram1 = psutil.virtual_memory()[3]
 f = open('convertcsv.json')
 start_time = time.time()
 data = json.load(f)
@@ -37,5 +39,7 @@ connection.close()
 
 # hien thi time run code
 print("---------Time: %s seconds---------" % (time.time() - start_time))
-
-
+#hien thi cpu usage
+# print(psutil.cpu_percent(time.time() - start_time))
+#hien thi ram usage
+print((psutil.virtual_memory()[3]-ram1)/1e6)
